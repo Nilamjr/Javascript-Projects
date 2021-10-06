@@ -1,34 +1,33 @@
 console.log("Its a APP for Take Notes");
-showNotes();
+// showNotes();
+
 let addBtn = document.getElementById('addBtn');
 
+// event listener on Add Button
 addBtn.addEventListener('click', function () {
     let addTxt = document.getElementById('addTxt');
     let notes = localStorage.getItem('notes');
 
     if (notes == null) {
-        notesObj = [];
-        // console.log("if notObj", notesObj);
+        notesObj = [];    // its a blank array
     } else {
-        notesObj = JSON.parse(notes);
-        // console.log("else notObj", notesObj);
+        notesObj = JSON.parse(notes); 
     }
 
-    notesObj.push(addTxt.value);
-    localStorage.setItem("notes", JSON.stringify(notesObj));
-    addTxt.value = "";
+    notesObj.push(addTxt.value); //push value which we type in textarea for create "notes"
+    localStorage.setItem('notes', JSON.stringify(notesObj));
+    addTxt.value = ""; 
 
     showNotes();
 });
 
+// Add notes after creating
 function showNotes() {
     let notes = localStorage.getItem('notes');
     if (notes == null) {
         notesObj = [];
-        console.log("show notes if", notesObj);
     } else {
         notesObj = JSON.parse(notes);
-        console.log("show notes else", notesObj);
     }
 
     let html = "";
@@ -50,6 +49,7 @@ function showNotes() {
     }
 }
 
+// delete notes on delete button
 function deleteNote(index){
     console.log(`"I am deleting this on id ${index}`);
 
@@ -63,7 +63,6 @@ function deleteNote(index){
     notesObj.splice(index, 1);
     localStorage.setItem("notes", JSON.stringify(notesObj));
     showNotes();
-
 }
 
 let searchTxt = document.getElementById("searchTxt");
@@ -74,8 +73,6 @@ searchTxt.addEventListener('input', function(){
 
 
     Array.from(noteCard).forEach(function(element){
-        
-
         let cardTxt = element.getElementsByTagName('p')[0].innerText;
 
         if(cardTxt.includes(inputVal)){
