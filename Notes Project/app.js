@@ -1,5 +1,5 @@
 console.log("Its a APP for Take Notes");
-// showNotes();
+showNotes();
 
 let addBtn = document.getElementById('addBtn');
 
@@ -51,7 +51,6 @@ function showNotes() {
 
 // delete notes on delete button
 function deleteNote(index){
-    console.log(`"I am deleting this on id ${index}`);
 
     let notes = localStorage.getItem('notes');
     if(notes == null){
@@ -65,12 +64,12 @@ function deleteNote(index){
     showNotes();
 }
 
+// Search functionality on input in navbar 
 let searchTxt = document.getElementById("searchTxt");
 searchTxt.addEventListener('input', function(){
+
     let inputVal = searchTxt.value.toLowerCase();
-
     let noteCard = document.getElementsByClassName('note-card');
-
 
     Array.from(noteCard).forEach(function(element){
         let cardTxt = element.getElementsByTagName('p')[0].innerText;
@@ -81,5 +80,4 @@ searchTxt.addEventListener('input', function(){
             element.style.display = "none";
         }
     })
-
 });
